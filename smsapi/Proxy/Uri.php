@@ -31,13 +31,25 @@ class Uri {
 		return $this->port;
 	}
 
-	public function getPath() {
+    public function getPath()
+    {
 		return $this->path;
 	}
 
-	public function getQuery() {
+    public function setPath($path)
+    {
+        $this->path = $path;
+    }
+
+    public function getQuery()
+    {
 		return $this->query;
 	}
+
+    public function setQuery($query)
+    {
+        $this->query = $query;
+    }
 
 }
 
