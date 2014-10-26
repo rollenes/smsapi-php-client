@@ -2,6 +2,8 @@
 
 namespace SMSApi\Proxy\Http;
 
+use SMSApi\Proxy\Uri;
+
 class AbstractHttp {
 
 	protected $protocol;
@@ -45,6 +47,11 @@ class AbstractHttp {
 	public function getProtocol() {
 		return $this->protocol;
 	}
+
+    public function createUri()
+    {
+        return new Uri($this->getProtocol(), $this->getHost(), $this->getPort(), null, null);
+    }
 
 	protected function checkCode( $code ) {
 		if ( $code AND $code < 200 OR $code > 299 ) {

@@ -2,13 +2,20 @@
 
 namespace SMSApi\Proxy;
 
-interface Proxy {
+use SMSApi\Api\Action\AbstractAction;
 
-	public function execute( \SMSApi\Api\Action\AbstractAction $action );
+interface Proxy
+{
+    public function execute(AbstractAction $action);
 
-	public function getProtocol();
+    public function getProtocol();
 
-	public function getHost();
+    public function getHost();
 
-	public function getPort();
+    public function getPort();
+
+    /**
+     * @return Uri
+     */
+    public function createUri();
 }
