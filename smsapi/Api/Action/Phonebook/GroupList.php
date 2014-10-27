@@ -9,9 +9,9 @@ use SMSApi\Proxy\Uri;
  * Class GroupList
  * @package SMSApi\Api\Action\Phonebook
  */
-class GroupList extends AbstractAction {
-
-	/**
+class GroupList extends AbstractAction
+{
+    /**
 	 * @param $data
 	 * @return \SMSApi\Api\Response\GroupsResponse
 	 */
@@ -25,18 +25,28 @@ class GroupList extends AbstractAction {
         return "/api/phonebook.do";
     }
 
-	/**
+    /**
+     * @return string
+     */
+    public function prepareQuery()
+    {
+        $query = "";
+
+        $query .= $this->paramsLoginToQuery();
+
+        $query .= $this->paramsOther();
+
+        $query .= "&list_groups=1";
+
+        return $query;
+    }
+
+    /**
 	 * @return Uri
 	 */
 	public function uri() {
 
-		$query = "";
-
-		$query .= $this->paramsLoginToQuery();
-
-		$query .= $this->paramsOther();
-
-		$query .= "&list_groups=1";
+        $query = $this->prepareQuery();
 
 		return new Uri( $this->proxy->getProtocol(), $this->proxy->getHost(), $this->proxy->getPort(), "/api/phonebook.do", $query );
 	}

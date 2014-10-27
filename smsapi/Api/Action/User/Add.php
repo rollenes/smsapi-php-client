@@ -9,9 +9,9 @@ use SMSApi\Proxy\Uri;
  * Class Add
  * @package SMSApi\Api\Action\User
  */
-class Add extends AbstractAction {
-
-	/**
+class Add extends AbstractAction
+{
+    /**
 	 * @param $data
 	 * @return \SMSApi\Api\Response\UserResponse
 	 */
@@ -25,16 +25,26 @@ class Add extends AbstractAction {
         return "/api/user.do";
     }
 
+    /**
+     * @return string
+     */
+    public function prepareQuery()
+    {
+        $query = "";
+
+        $query .= $this->paramsLoginToQuery();
+
+        $query .= $this->paramsOther();
+
+        return $query;
+    }
+
 	/**
 	 * @return Uri
 	 */
-	public function uri() {
-
-		$query = "";
-
-		$query .= $this->paramsLoginToQuery();
-
-		$query .= $this->paramsOther();
+	public function uri()
+    {
+        $query = $this->prepareQuery();
 
 		return new Uri( $this->proxy->getProtocol(), $this->proxy->getHost(), $this->proxy->getPort(), "/api/user.do", $query );
 	}

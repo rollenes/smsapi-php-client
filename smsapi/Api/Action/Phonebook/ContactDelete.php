@@ -9,9 +9,9 @@ use SMSApi\Proxy\Uri;
  * Class ContactDelete
  * @package SMSApi\Api\Action\Phonebook
  */
-class ContactDelete extends AbstractAction {
-
-	/**
+class ContactDelete extends AbstractAction
+{
+    /**
 	 * @param $data
 	 * @return \SMSApi\Api\Response\RawResponse
 	 */
@@ -25,16 +25,26 @@ class ContactDelete extends AbstractAction {
         return "/api/phonebook.do";
     }
 
+    /**
+     * @return string
+     */
+    public function prepareQuery()
+    {
+        $query = "";
+
+        $query .= $this->paramsLoginToQuery();
+
+        $query .= $this->paramsOther();
+
+        return $query;
+    }
+
 	/**
 	 * @return Uri
 	 */
-	public function uri() {
-
-		$query = "";
-
-		$query .= $this->paramsLoginToQuery();
-
-		$query .= $this->paramsOther();
+	public function uri()
+    {
+        $query = $this->prepareQuery();
 
 		return new Uri( $this->proxy->getProtocol(), $this->proxy->getHost(), $this->proxy->getPort(), "/api/phonebook.do", $query );
 	}

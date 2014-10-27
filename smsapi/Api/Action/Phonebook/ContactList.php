@@ -9,8 +9,8 @@ use SMSApi\Proxy\Uri;
  * Class ContactList
  * @package SMSApi\Api\Action\Phonebook
  */
-class ContactList extends AbstractAction {
-
+class ContactList extends AbstractAction
+{
 	/**
 	 * @var \ArrayObject
 	 */
@@ -23,7 +23,7 @@ class ContactList extends AbstractAction {
 		$this->groups = new \ArrayObject();
 	}
 
-	/**
+    /**
 	 * @param $data
 	 * @return \SMSApi\Api\Response\ContactsResponse
 	 */
@@ -37,22 +37,32 @@ class ContactList extends AbstractAction {
         return "/api/phonebook.do";
     }
 
+    /**
+     * @return string
+     */
+    public function prepareQuery()
+    {
+        $query = "";
+
+        $query .= $this->paramsLoginToQuery();
+
+        $query .= $this->paramsOther();
+
+        if (!empty($this->groups)) {
+            $query .= "&groups=" . implode(";", $this->groups->getArrayCopy());
+        }
+
+        $query .= "&list_contacts=1";
+
+        return $query;
+    }
+
 	/**
 	 * @return Uri
 	 */
-	public function uri() {
-
-		$query = "";
-
-		$query .= $this->paramsLoginToQuery();
-
-		$query .= $this->paramsOther();
-
-		if ( !empty( $this->groups ) ) {
-			$query .= "&groups=" . implode( ";", $this->groups->getArrayCopy() );
-		}
-
-		$query .= "&list_contacts=1";
+	public function uri()
+    {
+        $query = $this->prepareQuery();
 
 		return new Uri( $this->proxy->getProtocol(), $this->proxy->getHost(), $this->proxy->getPort(), "/api/phonebook.do", $query );
 	}

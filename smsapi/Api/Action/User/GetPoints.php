@@ -12,9 +12,9 @@ use SMSApi\Proxy\Uri;
  *
  * @method \SMSApi\Api\Response\PointsResponse|null execute() execute()
  */
-class GetPoints extends AbstractAction {
-
-	/**
+class GetPoints extends AbstractAction
+{
+    /**
 	 * @param $data
 	 * @return \SMSApi\Api\Response\PointsResponse
 	 */
@@ -28,18 +28,28 @@ class GetPoints extends AbstractAction {
         return "/api/user.do";
     }
 
+    /**
+     * @return string
+     */
+    public function prepareQuery()
+    {
+        $query = "";
+
+        $query .= $this->paramsLoginToQuery();
+
+        $query .= $this->paramsOther();
+
+        $query .= "&credits=1";
+
+        return $query;
+    }
+
 	/**
 	 * @return Uri
 	 */
-	public function uri() {
-
-		$query = "";
-
-		$query .= $this->paramsLoginToQuery();
-
-		$query .= $this->paramsOther();
-
-		$query .= "&credits=1";
+	public function uri()
+    {
+        $query = $this->prepareQuery();
 
 		return new Uri( $this->proxy->getProtocol(), $this->proxy->getHost(), $this->proxy->getPort(), "/api/user.do", $query );
 	}

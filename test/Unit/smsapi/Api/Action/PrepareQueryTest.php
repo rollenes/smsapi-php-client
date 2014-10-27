@@ -13,6 +13,7 @@ class PrepareQueryTest extends \PHPUnit_Framework_TestCase
     public function testPrepareQueryDummy(AbstractAction $action, $query)
     {
         $this->assertEquals($query, $action->uri()->getQuery());
+        $this->assertEquals($query, $action->prepareQuery());
     }
 
     public function actionProvider()

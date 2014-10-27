@@ -23,7 +23,25 @@ class ContactAdd extends AbstractAction {
 		$this->groups = new \ArrayObject();
 	}
 
-	/**
+    /**
+     * @return string
+     */
+    public function prepareQuery()
+    {
+        $query = "";
+
+        $query .= $this->paramsLoginToQuery();
+
+        $query .= $this->paramsOther();
+
+        if (count($this->groups) > 0) {
+            $query .= "&groups=" . implode(",", $this->groups->getArrayCopy());
+            return $query;
+        }
+        return $query;
+    }
+
+    /**
 	 * @param $data
 	 * @return \SMSApi\Api\Response\ContactResponse
 	 */
@@ -40,17 +58,9 @@ class ContactAdd extends AbstractAction {
 	/**
 	 * @return Uri
 	 */
-	public function uri() {
-
-		$query = "";
-
-		$query .= $this->paramsLoginToQuery();
-
-		$query .= $this->paramsOther();
-
-		if ( count( $this->groups ) > 0 ) {
-			$query .= "&groups=" . implode( ",", $this->groups->getArrayCopy() );
-		}
+	public function uri()
+    {
+        $query = $this->prepareQuery();
 
 		return new Uri( $this->proxy->getProtocol(), $this->proxy->getHost(), $this->proxy->getPort(), "/api/phonebook.do", $query );
 	}

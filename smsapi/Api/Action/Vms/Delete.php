@@ -26,7 +26,7 @@ class Delete extends AbstractAction
 		$this->id = new \ArrayObject();
 	}
 
-	/**
+    /**
 	 * @param $data
 	 * @return CountableResponse
 	 */
@@ -40,18 +40,28 @@ class Delete extends AbstractAction
         return "/api/vms.do";
     }
 
+    /**
+     * @return string
+     */
+    public function prepareQuery()
+    {
+        $query = "";
+
+        $query .= $this->paramsLoginToQuery();
+
+        $query .= $this->paramsOther();
+
+        $query .= "&sch_del=" . implode(",", $this->id->getArrayCopy());
+
+        return $query;
+    }
+
 	/**
 	 * @return Uri
 	 */
-	public function uri() {
-
-		$query = "";
-
-		$query .= $this->paramsLoginToQuery();
-
-		$query .= $this->paramsOther();
-
-		$query .= "&sch_del=" . implode(",", $this->id->getArrayCopy());
+	public function uri()
+    {
+        $query = $this->prepareQuery();
 
 		return new Uri( $this->proxy->getProtocol(), $this->proxy->getHost(), $this->proxy->getPort(), "/api/vms.do", $query );
 	}

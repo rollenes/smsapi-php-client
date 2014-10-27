@@ -20,7 +20,7 @@ class Get extends AbstractAction {
 		$this->id = new \ArrayObject();
 	}
 
-	/**
+    /**
 	 * @param $data
 	 * @return \SMSApi\Api\Response\StatusResponse
 	 */
@@ -34,18 +34,28 @@ class Get extends AbstractAction {
         return "/api/mms.do";
     }
 
+    /**
+     * @return string
+     */
+    public function prepareQuery()
+    {
+        $query = "";
+
+        $query .= $this->paramsLoginToQuery();
+
+        $query .= $this->paramsOther();
+
+        $query .= "&status=" . implode("|", $this->id->getArrayCopy());
+
+        return $query;
+    }
+
 	/**
 	 * @return Uri
 	 */
-	public function uri() {
-
-		$query = "";
-
-		$query .= $this->paramsLoginToQuery();
-
-		$query .= $this->paramsOther();
-
-		$query .= "&status=" . implode( "|", $this->id->getArrayCopy() );
+	public function uri()
+    {
+        $query = $this->prepareQuery();
 
 		return new Uri( $this->proxy->getProtocol(), $this->proxy->getHost(), $this->proxy->getPort(), "/api/mms.do", $query );
 	}

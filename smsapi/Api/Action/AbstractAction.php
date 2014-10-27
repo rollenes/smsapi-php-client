@@ -56,6 +56,8 @@ abstract class AbstractAction {
 
     abstract public function getPath();
 
+    abstract public function prepareQuery();
+
 	/**
 	 * @param $data
 	 * @return mixed

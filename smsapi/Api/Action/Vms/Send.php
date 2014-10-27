@@ -30,7 +30,7 @@ class Send extends AbstractAction
 	 */
 	private $file;
 
-	/**
+    /**
 	 * @param $data
 	 * @return StatusResponse
 	 */
@@ -44,22 +44,32 @@ class Send extends AbstractAction
         return "/api/vms.do";
     }
 
+    /**
+     * @return string
+     */
+    public function prepareQuery()
+    {
+        $query = "";
+
+        $query .= $this->paramsLoginToQuery();
+
+        $query .= $this->paramsBasicToQuery();
+
+        $query .= $this->paramsOther();
+
+        if (empty($this->file) && $this->tts != null) {
+            $query .= "&tts=" . $this->tts;
+            return $query;
+        }
+        return $query;
+    }
+
 	/**
 	 * @return Uri
 	 */
-	public function uri() {
-
-		$query = "";
-
-		$query .= $this->paramsLoginToQuery();
-
-		$query .= $this->paramsBasicToQuery();
-
-		$query .= $this->paramsOther();
-
-		if ( empty( $this->file ) && $this->tts != null ) {
-			$query .= "&tts=" . $this->tts;
-		}
+	public function uri()
+    {
+        $query = $this->prepareQuery();
 
 		return new Uri( $this->proxy->getProtocol(), $this->proxy->getHost(), $this->proxy->getPort(), "/api/vms.do", $query );
 	}

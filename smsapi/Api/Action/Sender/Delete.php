@@ -9,9 +9,9 @@ use SMSApi\Proxy\Uri;
  * Class Delete
  * @package SMSApi\Api\Action\Sender
  */
-class Delete extends AbstractAction {
-
-	/**
+class Delete extends AbstractAction
+{
+    /**
 	 * @param $data
 	 * @return \SMSApi\Api\Response\CountableResponse
 	 */
@@ -25,16 +25,25 @@ class Delete extends AbstractAction {
         return "/api/sender.do";
     }
 
+    /**
+     * @return string
+     */
+    public function prepareQuery()
+    {
+        $query = "";
+
+        $query .= $this->paramsLoginToQuery();
+
+        $query .= $this->paramsOther();
+        return $query;
+    }
+
 	/**
 	 * @return Uri
 	 */
-	public function uri() {
-
-		$query = "";
-
-		$query .= $this->paramsLoginToQuery();
-
-		$query .= $this->paramsOther();
+	public function uri()
+    {
+        $query = $this->prepareQuery();
 
 		return new Uri( $this->proxy->getProtocol(), $this->proxy->getHost(), $this->proxy->getPort(), "/api/sender.do", $query );
 	}

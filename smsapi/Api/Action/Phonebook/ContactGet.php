@@ -9,9 +9,9 @@ use SMSApi\Proxy\Uri;
  * Class ContactGet
  * @package SMSApi\Api\Action\Phonebook
  */
-class ContactGet extends AbstractAction {
-
-	/**
+class ContactGet extends AbstractAction
+{
+    /**
 	 * @param $data
 	 * @return \SMSApi\Api\Response\ContactResponse
 	 */
@@ -25,18 +25,27 @@ class ContactGet extends AbstractAction {
         return "/api/phonebook.do";
     }
 
+    /**
+     * @return string
+     */
+    public function prepareQuery()
+    {
+        $query = "";
+
+        $this->withGroups();
+        
+        $query .= $this->paramsLoginToQuery();
+
+        $query .= $this->paramsOther();
+        return $query;
+    }
+
 	/**
 	 * @return Uri
 	 */
-	public function uri() {
-
-		$query = "";
-
-		$this->withGroups();
-
-		$query .= $this->paramsLoginToQuery();
-
-		$query .= $this->paramsOther();
+	public function uri()
+    {
+        $query = $this->prepareQuery();
 
 		return new Uri( $this->proxy->getProtocol(), $this->proxy->getHost(), $this->proxy->getPort(), "/api/phonebook.do", $query );
 	}

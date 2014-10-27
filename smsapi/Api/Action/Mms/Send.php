@@ -9,9 +9,10 @@ use SMSApi\Proxy\Uri;
  * Class Send
  * @package SMSApi\Api\Action\Mms
  */
-class Send extends AbstractAction {
+class Send extends AbstractAction
+{
 
-	/**
+    /**
 	 * @param $data
 	 * @return \SMSApi\Api\Response\StatusResponse
 	 */
@@ -25,19 +26,29 @@ class Send extends AbstractAction {
         return "/api/mms.do";
     }
 
+    /**
+     * @return string
+     */
+    public function prepareQuery()
+    {
+        $query = "";
+
+        $query .= $this->paramsLoginToQuery();
+
+        $query .= $this->paramsBasicToQuery();
+
+        $query .= $this->paramsOther();
+
+        return $query;
+    }
+
 	/**
 	 * @return Uri
 	 * @throws \SMSApi\Exception\ActionException
 	 */
 	public function uri() {
 
-		$query = "";
-
-		$query .= $this->paramsLoginToQuery();
-
-		$query .= $this->paramsBasicToQuery();
-
-		$query .= $this->paramsOther();
+        $query = $this->prepareQuery();
 
 		return new Uri( $this->proxy->getProtocol(), $this->proxy->getHost(), $this->proxy->getPort(), "/api/mms.do", $query );
 	}
