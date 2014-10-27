@@ -35,6 +35,11 @@ class Delete extends AbstractAction
 		return new CountableResponse( $data );
 	}
 
+    public function getPath()
+    {
+        return "/api/vms.do";
+    }
+
 	/**
 	 * @return Uri
 	 */

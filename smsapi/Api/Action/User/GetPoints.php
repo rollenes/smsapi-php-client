@@ -23,6 +23,11 @@ class GetPoints extends AbstractAction {
 		return new \SMSApi\Api\Response\PointsResponse( $data );
 	}
 
+    public function getPath()
+    {
+        return "/api/user.do";
+    }
+
 	/**
 	 * @return Uri
 	 */

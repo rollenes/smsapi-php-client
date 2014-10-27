@@ -20,6 +20,11 @@ class Add extends AbstractAction {
 		return new \SMSApi\Api\Response\UserResponse( $data );
 	}
 
+    public function getPath()
+    {
+        return "/api/user.do";
+    }
+
 	/**
 	 * @return Uri
 	 */

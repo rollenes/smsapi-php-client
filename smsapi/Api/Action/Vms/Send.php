@@ -39,6 +39,11 @@ class Send extends AbstractAction
 		return new StatusResponse( $data );
 	}
 
+    public function getPath()
+    {
+        return "/api/vms.do";
+    }
+
 	/**
 	 * @return Uri
 	 * @throws \SMSApi\Exception\ActionException

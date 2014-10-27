@@ -20,6 +20,11 @@ class GroupList extends AbstractAction {
 		return new \SMSApi\Api\Response\GroupsResponse( $data );
 	}
 
+    public function getPath()
+    {
+        return "/api/phonebook.do";
+    }
+
 	/**
 	 * @return Uri
 	 */

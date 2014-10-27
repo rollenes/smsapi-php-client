@@ -20,6 +20,11 @@ class GroupDelete extends AbstractAction {
 		return new \SMSApi\Api\Response\RawResponse( $data );
 	}
 
+    public function getPath()
+    {
+        return "/api/phonebook.do";
+    }
+
 	/**
 	 * @return Uri
 	 */

@@ -20,6 +20,11 @@ class Add extends AbstractAction {
 		return new \SMSApi\Api\Response\CountableResponse( $data );
 	}
 
+    public function getPath()
+    {
+        return "/api/sender.do";
+    }
+
 	/**
 	 * @return Uri
 	 */

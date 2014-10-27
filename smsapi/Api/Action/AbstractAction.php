@@ -54,6 +54,8 @@ abstract class AbstractAction {
 	 */
 	abstract public function uri();
 
+    abstract public function getPath();
+
 	/**
 	 * @param $data
 	 * @return mixed

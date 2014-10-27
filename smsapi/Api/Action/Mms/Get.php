@@ -29,6 +29,11 @@ class Get extends AbstractAction {
 		return new \SMSApi\Api\Response\StatusResponse( $data );
 	}
 
+    public function getPath()
+    {
+        return "/api/mms.do";
+    }
+
 	/**
 	 * @return Uri
 	 */

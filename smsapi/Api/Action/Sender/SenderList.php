@@ -20,6 +20,11 @@ class SenderList extends AbstractAction {
 		return new \SMSApi\Api\Response\SendersResponse( $data );
 	}
 
+    public function getPath()
+    {
+        return "/api/sender.do";
+    }
+
 	/**
 	 * @return Uri
 	 */

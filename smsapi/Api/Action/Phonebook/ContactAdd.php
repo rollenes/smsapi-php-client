@@ -32,6 +32,11 @@ class ContactAdd extends AbstractAction {
 		return new \SMSApi\Api\Response\ContactResponse( $data );
 	}
 
+    public function getPath()
+    {
+        return "/api/phonebook.do";
+    }
+
 	/**
 	 * @return Uri
 	 */

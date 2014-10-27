@@ -20,6 +20,11 @@ class SenderDefault extends AbstractAction {
 		return new \SMSApi\Api\Response\RawResponse( $data );
 	}
 
+    public function getPath()
+    {
+        return "/api/sender.do";
+    }
+
 	/**
 	 * @return Uri
 	 */

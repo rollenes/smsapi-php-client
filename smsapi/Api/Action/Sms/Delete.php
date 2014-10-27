@@ -32,6 +32,11 @@ class Delete extends AbstractAction {
 		return new \SMSApi\Api\Response\CountableResponse( $data );
 	}
 
+    public function getPath()
+    {
+        return "/api/sms.do";
+    }
+
 	/**
 	 * @return Uri
 	 */

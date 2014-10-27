@@ -20,6 +20,11 @@ class UserList extends AbstractAction {
 		return new \SMSApi\Api\Response\UsersResponse( $data );
 	}
 
+    public function getPath()
+    {
+        return "/api/user.do";
+    }
+
 	/**
 	 * @return Uri
 	 */
