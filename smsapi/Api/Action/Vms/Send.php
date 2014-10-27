@@ -46,7 +46,6 @@ class Send extends AbstractAction
 
 	/**
 	 * @return Uri
-	 * @throws \SMSApi\Exception\ActionException
 	 */
 	public function uri() {
 
