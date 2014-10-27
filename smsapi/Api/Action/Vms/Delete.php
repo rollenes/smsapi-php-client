@@ -61,9 +61,16 @@ class Delete extends AbstractAction
 	 */
 	public function uri()
     {
+        $path = $this->getPath();
         $query = $this->prepareQuery();
 
-		return new Uri( $this->proxy->getProtocol(), $this->proxy->getHost(), $this->proxy->getPort(), "/api/vms.do", $query );
+		return new Uri(
+            $this->proxy->getProtocol(),
+            $this->proxy->getHost(),
+            $this->proxy->getPort(),
+            $path,
+            $query
+        );
 	}
 
 	/**

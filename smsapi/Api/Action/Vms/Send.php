@@ -39,6 +39,9 @@ class Send extends AbstractAction
 		return new StatusResponse( $data );
 	}
 
+    /**
+     * @return string
+     */
     public function getPath()
     {
         return "/api/vms.do";
@@ -61,6 +64,7 @@ class Send extends AbstractAction
             $query .= "&tts=" . $this->tts;
             return $query;
         }
+
         return $query;
     }
 
@@ -69,9 +73,16 @@ class Send extends AbstractAction
 	 */
 	public function uri()
     {
+        $path = $this->getPath();
         $query = $this->prepareQuery();
 
-		return new Uri( $this->proxy->getProtocol(), $this->proxy->getHost(), $this->proxy->getPort(), "/api/vms.do", $query );
+		return new Uri(
+            $this->proxy->getProtocol(),
+            $this->proxy->getHost(),
+            $this->proxy->getPort(),
+            $path,
+            $query
+        );
 	}
 
 	/**

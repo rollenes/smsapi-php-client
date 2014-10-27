@@ -20,6 +20,9 @@ class GroupGet extends AbstractAction
 		return new \SMSApi\Api\Response\GroupResponse( $data );
 	}
 
+    /**
+     * @return string
+     */
     public function getPath()
     {
         return "/api/phonebook.do";
@@ -44,9 +47,16 @@ class GroupGet extends AbstractAction
 	 */
 	public function uri()
     {
+        $path = $this->getPath();
         $query = $this->prepareQuery();
 
-		return new Uri( $this->proxy->getProtocol(), $this->proxy->getHost(), $this->proxy->getPort(), "/api/phonebook.do", $query );
+		return new Uri(
+            $this->proxy->getProtocol(),
+            $this->proxy->getHost(),
+            $this->proxy->getPort(),
+            $path,
+            $query
+        );
 	}
 
 	/**

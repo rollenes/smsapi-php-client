@@ -20,6 +20,9 @@ class GroupList extends AbstractAction
 		return new \SMSApi\Api\Response\GroupsResponse( $data );
 	}
 
+    /**
+     * @return string
+     */
     public function getPath()
     {
         return "/api/phonebook.do";
@@ -44,11 +47,18 @@ class GroupList extends AbstractAction
     /**
 	 * @return Uri
 	 */
-	public function uri() {
-
+	public function uri()
+    {
+        $path = $this->getPath();
         $query = $this->prepareQuery();
 
-		return new Uri( $this->proxy->getProtocol(), $this->proxy->getHost(), $this->proxy->getPort(), "/api/phonebook.do", $query );
+		return new Uri(
+            $this->proxy->getProtocol(),
+            $this->proxy->getHost(),
+            $this->proxy->getPort(),
+            $path,
+            $query
+        );
 	}
 
 }

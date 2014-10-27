@@ -20,6 +20,9 @@ class Get extends AbstractAction
 		return new \SMSApi\Api\Response\UserResponse( $data );
 	}
 
+    /**
+     * @return string
+     */
     public function getPath()
     {
         return "/api/user.do";
@@ -44,9 +47,16 @@ class Get extends AbstractAction
 	 */
 	public function uri()
     {
+        $path = $this->getPath();
         $query = $this->prepareQuery();
 
-		return new Uri( $this->proxy->getProtocol(), $this->proxy->getHost(), $this->proxy->getPort(), "/api/user.do", $query );
+        return new Uri(
+            $this->proxy->getProtocol(),
+            $this->proxy->getHost(),
+            $this->proxy->getPort(),
+            $path,
+            $query
+        );
 	}
 
 	/**

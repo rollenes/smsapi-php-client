@@ -20,6 +20,9 @@ class Add extends AbstractAction
 		return new \SMSApi\Api\Response\CountableResponse( $data );
 	}
 
+    /**
+     * @return string
+     */
     public function getPath()
     {
         return "/api/sender.do";
@@ -44,9 +47,16 @@ class Add extends AbstractAction
 	 */
 	public function uri()
     {
+        $path = $this->getPath();
         $query = $this->prepareQuery();
 
-		return new Uri( $this->proxy->getProtocol(), $this->proxy->getHost(), $this->proxy->getPort(), "/api/sender.do", $query );
+		return new Uri(
+            $this->proxy->getProtocol(),
+            $this->proxy->getHost(),
+            $this->proxy->getPort(),
+            $path,
+            $query
+        );
 	}
 
 	/**

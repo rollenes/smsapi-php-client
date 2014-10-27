@@ -24,6 +24,23 @@ class ContactAdd extends AbstractAction {
 	}
 
     /**
+	 * @param $data
+	 * @return \SMSApi\Api\Response\ContactResponse
+	 */
+	protected function response( $data ) {
+
+		return new \SMSApi\Api\Response\ContactResponse( $data );
+	}
+
+    /**
+     * @return string
+     */
+    public function getPath()
+    {
+        return "/api/phonebook.do";
+    }
+
+    /**
      * @return string
      */
     public function prepareQuery()
@@ -41,28 +58,21 @@ class ContactAdd extends AbstractAction {
         return $query;
     }
 
-    /**
-	 * @param $data
-	 * @return \SMSApi\Api\Response\ContactResponse
-	 */
-	protected function response( $data ) {
-
-		return new \SMSApi\Api\Response\ContactResponse( $data );
-	}
-
-    public function getPath()
-    {
-        return "/api/phonebook.do";
-    }
-
 	/**
 	 * @return Uri
 	 */
 	public function uri()
     {
+        $path = $this->getPath();
         $query = $this->prepareQuery();
 
-		return new Uri( $this->proxy->getProtocol(), $this->proxy->getHost(), $this->proxy->getPort(), "/api/phonebook.do", $query );
+		return new Uri(
+            $this->proxy->getProtocol(),
+            $this->proxy->getHost(),
+            $this->proxy->getPort(),
+            $path,
+            $query
+        );
 	}
 
 	/**

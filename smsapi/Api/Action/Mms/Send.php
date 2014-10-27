@@ -44,13 +44,19 @@ class Send extends AbstractAction
 
 	/**
 	 * @return Uri
-	 * @throws \SMSApi\Exception\ActionException
 	 */
-	public function uri() {
-
+	public function uri()
+    {
+        $path = $this->getPath();
         $query = $this->prepareQuery();
 
-		return new Uri( $this->proxy->getProtocol(), $this->proxy->getHost(), $this->proxy->getPort(), "/api/mms.do", $query );
+		return new Uri(
+            $this->proxy->getProtocol(),
+            $this->proxy->getHost(),
+            $this->proxy->getPort(),
+            $path,
+            $query
+        );
 	}
 
 	/**

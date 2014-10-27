@@ -20,6 +20,9 @@ class ContactGet extends AbstractAction
 		return new \SMSApi\Api\Response\ContactResponse( $data );
 	}
 
+    /**
+     * @return string
+     */
     public function getPath()
     {
         return "/api/phonebook.do";
@@ -37,6 +40,7 @@ class ContactGet extends AbstractAction
         $query .= $this->paramsLoginToQuery();
 
         $query .= $this->paramsOther();
+
         return $query;
     }
 
@@ -45,9 +49,16 @@ class ContactGet extends AbstractAction
 	 */
 	public function uri()
     {
+        $path = $this->getPath();
         $query = $this->prepareQuery();
 
-		return new Uri( $this->proxy->getProtocol(), $this->proxy->getHost(), $this->proxy->getPort(), "/api/phonebook.do", $query );
+		return new Uri(
+            $this->proxy->getProtocol(),
+            $this->proxy->getHost(),
+            $this->proxy->getPort(),
+            $path,
+            $query
+        );
 	}
 
 	/**
