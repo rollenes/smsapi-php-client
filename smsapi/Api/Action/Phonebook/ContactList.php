@@ -3,7 +3,6 @@
 namespace SMSApi\Api\Action\Phonebook;
 
 use SMSApi\Api\Action\AbstractAction;
-use SMSApi\Proxy\Uri;
 
 /**
  * Class ContactList
@@ -59,23 +58,6 @@ class ContactList extends AbstractAction
 
         return $query;
     }
-
-	/**
-	 * @return Uri
-	 */
-	public function uri()
-    {
-        $path = $this->getPath();
-        $query = $this->prepareQuery();
-
-		return new Uri(
-            $this->proxy->getProtocol(),
-            $this->proxy->getHost(),
-            $this->proxy->getPort(),
-            $path,
-            $query
-        );
-	}
 
 	/**
 	 * @deprecated since v1.1.0

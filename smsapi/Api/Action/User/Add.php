@@ -3,7 +3,6 @@
 namespace SMSApi\Api\Action\User;
 
 use SMSApi\Api\Action\AbstractAction;
-use SMSApi\Proxy\Uri;
 
 /**
  * Class Add
@@ -38,23 +37,6 @@ class Add extends AbstractAction
 
         return $query;
     }
-
-	/**
-	 * @return Uri
-	 */
-	public function uri()
-    {
-        $path = $this->getPath();
-        $query = $this->prepareQuery();
-
-		return new Uri(
-            $this->proxy->getProtocol(),
-            $this->proxy->getHost(),
-            $this->proxy->getPort(),
-            $path,
-            $query
-        );
-	}
 
 	/**
 	 * New account user name.

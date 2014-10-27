@@ -3,7 +3,6 @@
 namespace SMSApi\Api\Action\Phonebook;
 
 use SMSApi\Api\Action\AbstractAction;
-use SMSApi\Proxy\Uri;
 
 /**
  * Class ContactDelete
@@ -41,23 +40,6 @@ class ContactDelete extends AbstractAction
 
         return $query;
     }
-
-	/**
-	 * @return Uri
-	 */
-	public function uri()
-    {
-        $path = $this->getPath();
-        $query = $this->prepareQuery();
-
-		return new Uri(
-            $this->proxy->getProtocol(),
-            $this->proxy->getHost(),
-            $this->proxy->getPort(),
-            $path,
-            $query
-        );
-	}
 
 	/**
 	 * Set contact phone number to delete.

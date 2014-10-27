@@ -3,7 +3,6 @@
 namespace SMSApi\Api\Action\Mms;
 
 use SMSApi\Api\Action\AbstractAction;
-use SMSApi\Proxy\Uri;
 
 /**
  * Class Send
@@ -41,23 +40,6 @@ class Send extends AbstractAction
 
         return $query;
     }
-
-	/**
-	 * @return Uri
-	 */
-	public function uri()
-    {
-        $path = $this->getPath();
-        $query = $this->prepareQuery();
-
-		return new Uri(
-            $this->proxy->getProtocol(),
-            $this->proxy->getHost(),
-            $this->proxy->getPort(),
-            $path,
-            $query
-        );
-	}
 
 	/**
 	 * Set mobile phone number of the recipients.

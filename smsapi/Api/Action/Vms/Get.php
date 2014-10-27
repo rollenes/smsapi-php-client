@@ -4,7 +4,6 @@ namespace SMSApi\Api\Action\Vms;
 
 use SMSApi\Api\Action\AbstractAction;
 use SMSApi\Api\Response\StatusResponse;
-use SMSApi\Proxy\Uri;
 
 /**
  * Class Get
@@ -58,23 +57,6 @@ class Get extends AbstractAction
 
         return $query;
     }
-
-	/**
-	 * @return Uri
-	 */
-	public function uri()
-    {
-        $path = $this->getPath();
-        $query = $this->prepareQuery();
-
-		return new Uri(
-            $this->proxy->getProtocol(),
-            $this->proxy->getHost(),
-            $this->proxy->getPort(),
-            $path,
-            $query
-        );
-	}
 
 	/**
 	 * Set ID of messages to check.
