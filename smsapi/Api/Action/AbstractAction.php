@@ -2,6 +2,7 @@
 
 namespace SMSApi\Api\Action;
 
+use SMSApi\Proxy\Proxy;
 use SMSApi\Proxy\Uri;
 
 /**
@@ -14,8 +15,9 @@ abstract class AbstractAction
 	 * @var
 	 */
 	protected $client;
+
 	/**
-	 * @var
+	 * @var Proxy
 	 */
 	protected $proxy;
 	/**
@@ -56,16 +58,15 @@ abstract class AbstractAction
      */
     public function uri()
     {
-        $path = $this->getPath();
-        $query = $this->prepareQuery();
-
-        return new Uri(
+        $uri = new Uri(
             $this->proxy->getProtocol(),
             $this->proxy->getHost(),
             $this->proxy->getPort(),
-            $path,
-            $query
+            $this->getPath(),
+            $this->prepareQuery()
         );
+
+        return $uri;
     }
 
     abstract public function getPath();

@@ -48,9 +48,15 @@ class AbstractHttp {
 		return $this->protocol;
 	}
 
-    public function createUri()
+    public function createUri($query, $path)
     {
-        return new Uri($this->getProtocol(), $this->getHost(), $this->getPort(), null, null);
+        return new Uri(
+            $this->getProtocol(),
+            $this->getHost(),
+            $this->getPort(),
+            $path,
+            $query
+        );
     }
 
 	protected function checkCode( $code ) {

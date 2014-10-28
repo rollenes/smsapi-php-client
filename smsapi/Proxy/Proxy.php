@@ -17,5 +17,5 @@ interface Proxy
     /**
      * @return Uri
      */
-    public function createUri();
+    public function createUri($query, $path);
 }
