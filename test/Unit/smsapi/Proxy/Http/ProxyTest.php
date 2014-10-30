@@ -66,7 +66,9 @@ class ProxyTest extends \PHPUnit_Framework_TestCase
 
         $actionUri = $action->uri();
 
-        $this->assertEquals($actionUri, $proxy->createUri($query, $path));
+        $proxyUri = $proxy->createUri($query, $path);
+
+        $this->assertEquals($actionUri, $proxyUri);
     }
 }
 

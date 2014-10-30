@@ -28,13 +28,6 @@ class DeleteTest extends \PHPUnit_Framework_TestCase
         $this->deleteVmsAction = $deleteVmsAction;
     }
 
-    public function testUriReturnsUri()
-    {
-        $result = $this->deleteVmsAction->uri();
-
-        $this->assertInstanceOf('\SMSApi\Proxy\Uri', $result);
-    }
-
     public function testUriWithNoFilter()
     {
         $query = $this->deleteVmsAction->prepareQuery();

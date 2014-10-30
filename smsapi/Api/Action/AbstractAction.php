@@ -54,19 +54,13 @@ abstract class AbstractAction
 	}
 
     /**
+     * @deprecated since version 1.2 - use Proxy::createUri()
+     *
      * @return Uri
      */
     public function uri()
     {
-        $uri = new Uri(
-            $this->proxy->getProtocol(),
-            $this->proxy->getHost(),
-            $this->proxy->getPort(),
-            $this->getPath(),
-            $this->prepareQuery()
-        );
-
-        return $uri;
+        return $this->proxy->createUri($this->prepareQuery(), $this->getPath());
     }
 
     abstract public function getPath();
