@@ -16,7 +16,7 @@ class Native extends AbstractHttp implements Proxy {
 
 		try {
 
-			$this->uri = $action->uri();
+			$this->uri = $this->createUri($action->prepareQuery(), $action->getPath());
 			$this->file = $action->file();
 
 			if ( $this->uri == null ) {
