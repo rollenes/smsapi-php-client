@@ -15,10 +15,6 @@ class Curl extends AbstractHttp implements Proxy {
 			$this->uri = $this->createUri($action->prepareQuery(), $action->getPath());
 			$this->file = $action->file();
 
-			if ( $this->uri == null ) {
-				throw new \SMSApi\Exception\ProxyException( "Invalid URI" );
-			}
-
 			if ( !empty( $this->file ) && file_exists( $this->file ) ) {
 
 				$this->toConnect( $this->file );
