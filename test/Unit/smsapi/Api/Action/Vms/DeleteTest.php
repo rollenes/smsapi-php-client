@@ -28,14 +28,14 @@ class DeleteTest extends \PHPUnit_Framework_TestCase
         $this->deleteVmsAction = $deleteVmsAction;
     }
 
-    public function testUriWithNoFilter()
+    public function testPrepareQueryWithNoFilter()
     {
         $query = $this->deleteVmsAction->prepareQuery();
 
         $this->assertEquals('username=test&password=&sch_del=', $query);
     }
 
-    public function testUriWithOneIdFilter()
+    public function testPrepareQueryWithOneIdFilter()
     {
         $this->deleteVmsAction->filterByIds(['deleteId']);
 
@@ -44,7 +44,7 @@ class DeleteTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('username=test&password=&sch_del=deleteId', $query);
     }
 
-    public function testUriWithManyIdFilter()
+    public function testPrepareQueryWithManyIdFilter()
     {
         $this->deleteVmsAction->filterByIds(['del1', 'del2', 'del3']);
 
