@@ -34,10 +34,9 @@ class ContactAddTest extends \PHPUnit_Framework_TestCase {
                'group1', 'group2'
             ));
 
-        $uri = $this->addContactAction
-            ->uri();
+        $query = $this->addContactAction->prepareQuery();
 
-        $this->assertEquals('username=test&password=&groups=group1,group2', $uri->getQuery());
+        $this->assertEquals('username=test&password=&groups=group1,group2', $query);
     }
 
 }

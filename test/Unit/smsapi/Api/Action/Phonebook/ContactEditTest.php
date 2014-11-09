@@ -31,9 +31,9 @@ class ContactEditTest extends \PHPUnit_Framework_TestCase {
     {
         $this->editContactAction->addToGroup('test_group');
 
-        $result = $this->editContactAction->uri();
+        $query = $this->editContactAction->prepareQuery();
 
-        $this->assertEquals('username=test&password=&add_to_group=test_group', $result->getQuery());
+        $this->assertEquals('username=test&password=&add_to_group=test_group', $query);
     }
 
 
@@ -41,9 +41,9 @@ class ContactEditTest extends \PHPUnit_Framework_TestCase {
     {
         $this->editContactAction->removeFromGroup('test_group');
 
-        $result = $this->editContactAction->uri();
+        $query = $this->editContactAction->prepareQuery();
 
-        $this->assertEquals('username=test&password=&remove_from_groups=test_group', $result->getQuery());
+        $this->assertEquals('username=test&password=&remove_from_groups=test_group', $query);
     }
 
 }

@@ -24,10 +24,10 @@ class PrepareQueryTest extends \PHPUnit_Framework_TestCase
             array($this->configureAction(new Mms\Get()), 'username=test&password=&status='),
             array($this->configureAction(new Mms\Send()), 'username=test&password=&to='),
 
-            array($this->configureAction(new Phonebook\ContactAdd()), 'username=test&password=&groups='),
+            array($this->configureAction(new Phonebook\ContactAdd()), 'username=test&password='),
             array($this->configureAction(new Phonebook\ContactDelete()), 'username=test&password='),
-            array($this->configureAction(new Phonebook\ContactEdit()), 'username=test&password=&groups='),
-            array($this->configureAction(new Phonebook\ContactGet()), 'username=test&password='),
+            array($this->configureAction(new Phonebook\ContactEdit()), 'username=test&password='),
+            array($this->configureAction(new Phonebook\ContactGet()), 'username=test&password=&with_groups=1'),
             array($this->configureAction(new Phonebook\ContactList()), 'username=test&password=&groups=&list_contacts=1'),
 
             array($this->configureAction(new Phonebook\GroupAdd()), 'username=test&password='),

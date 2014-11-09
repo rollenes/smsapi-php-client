@@ -30,12 +30,9 @@ class ContactGetTest extends \PHPUnit_Framework_TestCase
 
     public function testUriWithGroups()
     {
-        $this->getContactAction;
+        $query = $this->getContactAction->prepareQuery();
 
-        $uri = $this->getContactAction
-            ->uri();
-
-        $this->assertEquals('username=test&password=&with_groups=1', $uri->getQuery());
+        $this->assertEquals('username=test&password=&with_groups=1', $query);
     }
 
 }
